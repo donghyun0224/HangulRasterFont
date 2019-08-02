@@ -96,17 +96,17 @@ function printHE(x, y, cp) {
         jamoPrint(x, y, cp - 0x1112);
       }
       else if (cp >= 0x1161 && cp < 0x1176) {
-        jamoPrint(x, y, cp - 0x1160 + 20 * 8);
+        jamoPrint(x, y, cp - 0x1160 + 20 * 8 + 20 * 1);
       }
       else if (cp >= 0x11A8 && cp < 0x11C3) {
-        jamoPrint(x, y, cp - 0x11A7 + 20 * 8 + 22 * 4);
+        jamoPrint(x, y, cp - 0x11A7 + 20 * 8 + 22 * 4 + 28 * 0);
       }
     }
     else if (cp >= 0x3130 && cp < 0x3190) // Compat. Jamo
     {
       if (cp < 0x314F) {
-        const o1=20*1;
-        const o2=28*0;
+        const o1 = 20 * 1;
+        const o2 = 28 * 0;
         var conv = [0 + o1, 1 + o1, 2 + o1, 20 * 8 + 22 * 4 + 3 + o2, 3 + o1,
         20 * 8 + 22 * 4 + 5 + o2, 20 * 8 + 22 * 4 + 6 + o2, 4 + o1,
         5 + o1, 6 + o1, 20 * 8 + 22 * 4 + 9 + o2, 20 * 8 + 22 * 4 + 10 + o2,
