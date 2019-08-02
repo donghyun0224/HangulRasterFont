@@ -1,5 +1,5 @@
 // Initialize
-const width = 256, height = 128;
+const width = 256, height = 16;
 const pxSz = 2;
 var fCanv = document.getElementById("fontCanvas");
 fCanv.width = width * pxSz;
@@ -9,6 +9,7 @@ const fgColor = "black", bgColor = "white";
 fCanv.style.backgroundColor = bgColor;
 fCanvCtx.strokeStyle = fgColor;
 
+document.getElementById("tData").maxLength=width/16;
 function placeDot(x, y, t) {
   //if(t==0) return;
   fCanvCtx.fillStyle = t > 0 ? fgColor : bgColor;
@@ -45,7 +46,7 @@ const beolTable = {
 
 // Font File
 const hFont = atob(hFont64);
-const eFont = atob(eFont64);
+const eFont = atob(eFont64_2);
 
 function hanPrint(x, y, cho, joong, jong) {
   var chobeol = beolTable["cho"][(jong != 0) + 2 * joong];
@@ -172,7 +173,6 @@ chr.addEventListener("change", function () {
       }
     }
     px += printHE(px, py, cp);
-    console.log(px);
   }
 });
 
