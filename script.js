@@ -15,12 +15,11 @@ function placeDot(x, y, t) {
   fCanvCtx.fillRect(x * pxSz, y * pxSz, pxSz, pxSz);
 }
 
-function clearCanv()
-{
-  var tmp=fCanvCtx.fillStyle;
-  fCanvCtx.fillStyle=bgColor;
-  fCanvCtx.fillRect(0,0,width*pxSz,height*pxSz);
-  fCanvCtx.fillStyle=tmp;
+function clearCanv() {
+  var tmp = fCanvCtx.fillStyle;
+  fCanvCtx.fillStyle = bgColor;
+  fCanvCtx.fillRect(0, 0, width * pxSz, height * pxSz);
+  fCanvCtx.fillStyle = tmp;
 }
 
 function bytePrint(x, y, data) {
@@ -76,7 +75,7 @@ function engPrint(x, y, chr) {
   }
 }
 
-function printHE(x,y,cp) {
+function printHE(x, y, cp) {
   // Check for hangul
   if (cp >= 0xAC00 && cp < 0xD7A4) // Hangul Syl.
   {
@@ -106,10 +105,16 @@ function printHE(x,y,cp) {
     else if (cp >= 0x3130 && cp < 0x3190) // Compat. Jamo
     {
       if (cp < 0x314F) {
-        var conv = [0, 1, 2, 20 * 8 + 22 * 4 + 3, 3, 20 * 8 + 22 * 4 + 5, 20 * 8 + 22 * 4 + 6, 4, 5, 6,
-          20 * 8 + 22 * 4 + 9, 20 * 8 + 22 * 4 + 10, 20 * 8 + 22 * 4 + 11, 20 * 8 + 22 * 4 + 12, 20 * 8
-          + 22 * 4 + 13, 20 * 8 + 22 * 4 + 14, 20 * 8 + 22 * 4 + 15, 7, 8, 9, 20 * 8 + 22 * 4 + 18, 10,
-          11, 12, 13, 13, 14, 15, 16, 17, 18, 19, 20];
+        const o1=20*1;
+        const o2=28*0;
+        var conv = [0 + o1, 1 + o1, 2 + o1, 20 * 8 + 22 * 4 + 3 + o2, 3 + o1,
+        20 * 8 + 22 * 4 + 5 + o2, 20 * 8 + 22 * 4 + 6 + o2, 4 + o1,
+        5 + o1, 6 + o1, 20 * 8 + 22 * 4 + 9 + o2, 20 * 8 + 22 * 4 + 10 + o2,
+        20 * 8 + 22 * 4 + 11 + o2, 20 * 8 + 22 * 4 + 12 + o2,
+        20 * 8 + 22 * 4 + 13 + o2, 20 * 8 + 22 * 4 + 14 + o2,
+        20 * 8 + 22 * 4 + 15 + o2, 7 + o1, 8 + o1, 9 + o1,
+        20 * 8 + 22 * 4 + 18 + o2, 10 + o1, 11 + o1, 12 + o1, 13 + o1, 13 + o1,
+        14 + o1, 15 + o1, 16 + o1, 17 + o1, 18 + o1, 19 + o1, 20 + o1];
         jamoPrint(x, y, conv[cp - 0x3130]);
       }
       else if (cp < 0x3164) {
@@ -145,7 +150,7 @@ chr.addEventListener("change", function () {
       var joong = Math.floor(((cp - 0xAC00) % 588) / 28);
       var jong = ((cp - 0xAC00) % 588) % 28;
       //document.getElementById("tIMF").value = jamoTable["init"][cho] + "+" +
-        jamoTable["med"][joong] + "+" + jamoTable["fin"][jong];
+      jamoTable["med"][joong] + "+" + jamoTable["fin"][jong];
     }
     else {
       //document.getElementById("tIMF").value = "";
@@ -166,7 +171,7 @@ chr.addEventListener("change", function () {
         return;
       }
     }
-    px+=printHE(px,py,cp);
+    px += printHE(px, py, cp);
     console.log(px);
   }
 });
