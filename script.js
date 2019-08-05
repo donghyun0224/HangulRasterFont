@@ -1,16 +1,17 @@
 const charWidth = 8, charHeight = 16; // 글자 크기 (8*16, 한글은 double width)
-const pxSz = 2; // 글자 1픽셀의 canvas에서의 크기 지정 (2배)
-var columns = 32, rows = 2; // 표시 창 사이즈(16*1 글자)
-const fgColor = "black", bgColor = "greenyellow"; // 색 지정
+const pxSz = 1; // 글자 1픽셀의 canvas에서의 크기 지정 (2배)
+var columns = 80, rows = 8; // 표시 창 사이즈(16*1 글자)
 const pad = 1;
 var fCanv = document.getElementById("fontCanvas");
 var fCanvCtx = fCanv.getContext("2d");
 var tData = document.getElementById("tData");
 fCanv.width = (charWidth * columns + pad * 2) * pxSz;
 fCanv.height = (charHeight * rows + pad * 2) * pxSz;
-fCanv.style.backgroundColor = bgColor;
-fCanvCtx.strokeStyle = fgColor;
-tData.style.width = fCanv.width + "px";
+var bgColor=getComputedStyle(fCanv).backgroundColor;
+var fgColor=getComputedStyle(fCanv).color;
+fCanvCtx.strokeStyle=fgColor;
+// tData.style.width = fCanv.width + "px";
+tData.style.width="32em";
 // document.getElementById("tData").maxLength = columns/2;
 
 // 정해진 위치에 점
@@ -202,7 +203,7 @@ function reDraw() {
       len = 0;
       continue;
     }
-    if (len >= columns) {
+    if (len+printLen(tData.value.codePointAt(idx))>columns) {
       height++;
       len = 0;
     }
@@ -212,14 +213,15 @@ function reDraw() {
   fCanv.height = charHeight * pxSz * Math.max(height, rows);
   for (let idx = 0, px = 0, py = 0; idx < tData.value.length; idx++) {
     const cp = tData.value.codePointAt(idx);
-    console.log(px + " " + py + " " + cp);
     if (cp == '\n'.codePointAt(0)) {
       py += charHeight;
       px = 0;
 
       continue;
     }
-    if (px >= columns * charWidth) {
+    if (px+printLen(cp)*charWidth > columns * charWidth) {
+      if(printLen(cp)==2 && columns-2-px/charWidth < 1)
+        printHE(px,py,'>'.codePointAt(0));
       py += charHeight;
       px = 0;
     }

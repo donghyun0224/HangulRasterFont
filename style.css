@@ -7,4 +7,6 @@ canvas {
   border: 1px;
   border-style: solid;
   border-color: black;
+  background-color: black;
+  color: lime;
 }
