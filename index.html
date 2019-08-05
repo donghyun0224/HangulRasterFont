@@ -13,13 +13,23 @@
     한글 폰트<br />
     <canvas id="fontCanvas"></canvas>
     <br />
-    <textarea id="tData" placeholder="여기에 텍스트 입력" rows="4"></textarea><br /> 한글 폰트 파일:<input type="file" id="hFF"
+    <textarea id="tData" placeholder="여기에 텍스트 입력"></textarea><br /> 한글 폰트 파일:<input type="file" id="hFF"
         accept=".han, .HAN"><br /> 영어 폰트
     파일:<input type="file" id="eFF" accept=".eng, .ENG"><br /> KSSM 그래픽 문자:<input type="file" id="kFF"
         accept=".ksg, .KSG"><br /> 삼보
     특수문자:<input type="file" id="sFF" accept=".spc, .SPC"><br />
     <script lang="javascript" src="./font.js"></script>
     <script lang="javascript" src="./script.js"></script>
+    <script lang="javascript">
+    document.getElementById("tData").addEventListener("keyup", function () {
+        this.style.height="5px";
+        this.style.height=this.scrollHeight+"px";
+    });
+    document.getElementById("tData").addEventListener("keyup", function () {
+        this.style.height="5px";
+        this.style.height=this.scrollHeight+"px";
+    });
+    </script>
 </body>
 
 </html>
