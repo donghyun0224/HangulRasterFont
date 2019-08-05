@@ -1,0 +1,10 @@
+textarea {
+  font-family: monospace;
+  resize: vertical;
+}
+
+canvas {
+  border: 1px;
+  border-style: solid;
+  border-color: black;
+}
